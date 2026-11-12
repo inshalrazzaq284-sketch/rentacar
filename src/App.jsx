@@ -1,4 +1,3 @@
-
 import Cars from "./pages/Cars";
 import CarDetails from "./pages/CarDetails";
 import { carsData } from "./pages/Cars";
@@ -158,3 +157,4 @@ function App() {
 }
 
 export default App;
+
