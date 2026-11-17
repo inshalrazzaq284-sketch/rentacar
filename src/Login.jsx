@@ -1,101 +1,108 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import './Login.css';
 
 function Login() {
-    const [isLogin, setIsLogin] = useState(true);
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        contact: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (isLogin) {
-            alert('Sign In Successful! Welcome: ' + email);
+        if (isSignUp) {
+            alert(`Account Created! Welcome, ${formData.name}`);
         } else {
-            alert('Account Created! Name: ' + name + ' | Phone: ' + phone);
+            alert(`Welcome Back! Logged in with ${formData.email}`);
         }
     };
 
     return (
-        <div style={{ maxWidth: '360px', margin: '70px auto', padding: '25px', border: '1px solid #ccc', borderRadius: '8px', fontFamily: 'Arial' }}>
-
-            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
-                {isLogin ? 'Rent a Car - Sign In' : 'Rent a Car - Sign Up'}
-            </h2>
-
-            <form onSubmit={handleSubmit}>
-
-                {!isLogin && (
-                    <>
-                        <div style={{ marginBottom: '15px' }}>
-                            <label>Full Name:</label><br />
-                            <input
-                                type="text"
-                                placeholder="Enter your full name"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                style={{ width: '100%', padding: '8px', marginTop: '5px', boxSizing: 'border-box' }}
-                            />
-                        </div>
-
-                        <div style={{ marginBottom: '15px' }}>
-                            <label>Phone Number:</label><br />
-                            <input
-                                type="tel"
-                                placeholder="Enter your phone number"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                                required
-                                style={{ width: '100%', padding: '8px', marginTop: '5px', boxSizing: 'border-box' }}
-                            />
-                        </div>
-                    </>
-                )}
-
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Email:</label><br />
-                    <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', marginTop: '5px', boxSizing: 'border-box' }}
-                    />
+        <div className="page-wrapper">
+            <div className="auth-card">
+                <div className="brand-header">
+                    <span className="car-badge">RENT A CAR</span>
+                    <h2>{isSignUp ? 'Create an Account' : 'Welcome Back'}</h2>
+                    <p className="subtitle">
+                        {isSignUp
+                            ? 'Sign up to book your dream ride today'
+                            : 'Sign in to manage your car bookings'}
+                    </p>
                 </div>
 
-                <div style={{ marginBottom: '15px' }}>
-                    <label>Password:</label><br />
-                    <input
-                        type="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', marginTop: '5px', boxSizing: 'border-box' }}
-                    />
+                <form onSubmit={handleSubmit} className="auth-form">
+                    {isSignUp && (
+                        <>
+                            <div className="form-group">
+                                <label>Full Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Ali Khan"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Contact Number</label>
+                                <input
+                                    type="tel"
+                                    name="contact"
+                                    placeholder="0300-1234567"
+                                    value={formData.contact}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                        </>
+                    )}
+
+                    <div className="form-group">
+                        <label>Email Address</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="name@example.com"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="••••••••"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" className="submit-btn">
+                        {isSignUp ? 'Sign Up' : 'Sign In'}
+                    </button>
+                </form>
+
+                <div className="switch-box">
+                    <p>
+                        {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
+                        <span onClick={() => setIsSignUp(!isSignUp)}>
+              {isSignUp ? 'Sign In' : 'Sign Up'}
+            </span>
+                    </p>
                 </div>
-
-                <button
-                    type="submit"
-                    style={{ width: '100%', padding: '10px', backgroundColor: '#2563eb', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
-                >
-                    {isLogin ? 'Sign In' : 'Sign Up'}
-                </button>
-
-            </form>
-
-            <p style={{ textAlign: 'center', marginTop: '15px', fontSize: '14px' }}>
-                {isLogin ? "Don't have an account? " : "Already have an account? "}
-                <span
-                    onClick={() => setIsLogin(!isLogin)}
-                    style={{ color: '#2563eb', cursor: 'pointer', fontWeight: 'bold', textDecoration: 'underline' }}
-                >
-          {isLogin ? 'Sign Up' : 'Sign In'}
-        </span>
-            </p>
-
+            </div>
         </div>
     );
 }
