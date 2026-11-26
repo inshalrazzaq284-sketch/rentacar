@@ -1,6 +1,4 @@
 
-/* GENERAL STYLING */
-
 * {
   box-sizing: border-box;
 }
@@ -21,7 +19,7 @@ body {
   min-height: 100vh;
 }
 
-/* HEADER AND NAVBAR */
+/* HEADER */
 
 .header {
   background-color: #ffffff;
@@ -235,7 +233,7 @@ body {
   resize: vertical;
 }
 
-/* CARS PAGE */
+/* CARS SECTION */
 
 .cars-section {
   padding: 60px 6%;
@@ -336,7 +334,7 @@ body {
   background-color: #2563eb;
 }
 
-/* SEARCH AND FILTER */
+/* FILTER SECTION */
 
 .filter-section {
   display: flex;
@@ -357,7 +355,7 @@ body {
   min-width: 220px;
 }
 
-/* CAR DETAILS BUTTON */
+/* VIEW DETAILS BUTTON */
 
 .btn-details {
   display: inline-block;
@@ -431,7 +429,7 @@ body {
   margin-top: 30px;
 }
 
-/* RESPONSIVE DESIGN */
+/* TABLET RESPONSIVE DESIGN */
 
 @media (max-width: 950px) {
   .cars-grid {
@@ -442,6 +440,8 @@ body {
     font-size: 38px;
   }
 }
+
+/* MOBILE RESPONSIVE DESIGN */
 
 @media (max-width: 650px) {
   .header {
