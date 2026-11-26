@@ -1,20 +1,9 @@
-import React from 'react';
-import Contact from './pages/contact';
+import Login from './Login';
 
 function App() {
-  return (
-      <div>
-        <Contact />
-      </div>
-  );
+    return (
+        <Login />
+    );
 }
 
 export default App;
-
-
-
-
-
-
-
-
