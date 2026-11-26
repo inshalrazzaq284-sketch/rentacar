@@ -1,61 +1,91 @@
-const cars = require('../models/carModel');
 
-const getCars = (req, res) => {
-    res.json(cars);
-};
+const Car = require("../models/carModel");
 
-
-const getCarById = (req, res) => {
-    const car = cars.find(
-        (car) => car.id === Number(req.params.id)
-    );
-
-    if (!car) {
-        return res.status(404).json({
-            message: 'Car not found'
-        });
+// Get all cars
+const getCars = async (req, res) => {
+    try {
+        const cars = await Car.find();
+        res.json(cars);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    res.json(car);
 };
-const addCar = (req, res) => {
-    const newCar = req.body;
 
-    cars.push(newCar);
-
-    res.status(201).json(newCar);
-};
-const deleteCar = (req, res) => {
-    const index = cars.findIndex(
-        (car) => car.id === Number(req.params.id)
-    );
-
-    if (index === -1) {
-        return res.status(404).json({
-            message: 'Car not found'
+// Get car by ID
+const getCarById = async (req, res) => {
+    try {
+        const car = await Car.findOne({
+            id: Number(req.params.id)
         });
+
+        if (!car) {
+            return res.status(404).json({
+                message: "Car not found"
+            });
+        }
+
+        res.json(car);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    cars.splice(index, 1);
-
-    res.json({
-        message: 'Car deleted successfully'
-    });
 };
-const updateCar = (req, res) => {
-    const car = cars.find(
-        (car) => car.id === Number(req.params.id)
-    );
 
-    if (!car) {
-        return res.status(404).json({
-            message: 'Car not found'
+// Add new car
+const addCar = async (req, res) => {
+    try {
+        const car = await Car.create(req.body);
+        res.status(201).json(car);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+// Update car
+const updateCar = async (req, res) => {
+    try {
+        const car = await Car.findOneAndUpdate(
+            { id: Number(req.params.id) },
+            req.body,
+            { new: true, runValidators: true }
+        );
+
+        if (!car) {
+            return res.status(404).json({
+                message: "Car not found"
+            });
+        }
+
+        res.json(car);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+// Delete car
+const deleteCar = async (req, res) => {
+    try {
+        const car = await Car.findOneAndDelete({
+            id: Number(req.params.id)
         });
+
+        if (!car) {
+            return res.status(404).json({
+                message: "Car not found"
+            });
+        }
+
+        res.json({
+            message: "Car deleted successfully"
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-
-    Object.assign(car, req.body);
-
-    res.json(car);
 };
 
-module.exports = { getCars, getCarById, addCar, updateCar, deleteCar };
+module.exports = {
+    getCars,
+    getCarById,
+    addCar,
+    updateCar,
+    deleteCar
+};
