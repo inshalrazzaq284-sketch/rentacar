@@ -1,87 +1,87 @@
 
-import './About.css';
+import "./About.css";
+import { Link } from "react-router-dom";
 
 export default function About() {
     return (
         <div className="about-page">
 
-            <section className="about-hero">
-                <h1>About Rent n Drive</h1>
-                <p>
-                    Your Journey, Our Responsibility.
-                    Experience comfort, luxury and freedom
-                    with every ride.
-                </p>
-            </section>
+            {/* ABOUT US */}
+            <section className="about-main">
 
-            <section className="about-content">
-                <div className="about-text">
-                    <h2>Who We Are</h2>
+                <div className="about-info">
+                    <span className="about-label">ABOUT US</span>
+
+                    <h1>
+                        Welcome to <span>Rent n Drive</span>
+                    </h1>
 
                     <p>
-                        Rent n Drive is a reliable car rental
-                        platform providing a wide range of
-                        vehicles, from luxury sedans to powerful
-                        SUVs and 4x4 Jeeps.
+                        Rent n Drive makes car rental simple,
+                        comfortable and affordable. From luxury
+                        Mercedes and Rolls Royce to powerful SUVs
+                        and Jeeps, we help you find the perfect
+                        vehicle for every journey.
                     </p>
 
                     <p>
-                        Our goal is to make every journey safe,
-                        comfortable and affordable. We believe
-                        renting a car should be simple and
-                        stress-free.
+                        Your comfort, safety and satisfaction
+                        are always our priorities.
                     </p>
+
+                    <Link to="/" className="about-btn">
+                        Explore Our Cars →
+                    </Link>
                 </div>
 
-                <div className="about-image">
+                {/* TRANSPARENT CAR IMAGE */}
+                <div className="about-photo">
                     <img
-                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900"
-                        alt="Luxury car"
+                        src="/car.png"
+                        alt="Luxury rental car"
                     />
                 </div>
+
             </section>
 
-            <section className="mission-section">
-                <h2>Our Mission</h2>
-                <p>
-                    To provide customers with a smooth,
-                    convenient and enjoyable car rental
-                    experience through quality vehicles
-                    and excellent service.
+            {/* CONTACT DETAILS */}
+            <section className="about-contact">
+
+                <h2>
+                    Get in <span>Touch</span>
+                </h2>
+
+                <p className="about-contact-subtitle">
+                    Have a question? We're here to help.
                 </p>
-            </section>
 
-            <section className="why-section">
-                <h2>Why Choose Us?</h2>
+                <div className="about-contact-grid">
 
-                <div className="why-grid">
-
-                    <div className="why-card">
-                        <h3>🚗 Wide Vehicle Selection</h3>
-                        <p>
-                            Choose from luxury cars, SUVs
-                            and powerful Jeeps.
-                        </p>
+                    <div className="about-contact-card">
+                        <span className="contact-icon">📞</span>
+                        <h3>Phone</h3>
+                        <p>+358 4089765</p>
                     </div>
 
-                    <div className="why-card">
-                        <h3>💰 Affordable Prices</h3>
-                        <p>
-                            Enjoy quality vehicles at
-                            competitive rental prices.
-                        </p>
+                    <div className="about-contact-card">
+                        <span className="contact-icon">✉️</span>
+                        <h3>Email</h3>
+                        <p>rentacar@gmail.com</p>
                     </div>
 
-                    <div className="why-card">
-                        <h3>🛡️ Safe & Reliable</h3>
-                        <p>
-                            Your safety and comfort are
-                            always our priority.
-                        </p>
+                    <div className="about-contact-card">
+                        <span className="contact-icon">📍</span>
+                        <h3>Location</h3>
+                        <p>Espoo, Finland</p>
                     </div>
 
                 </div>
             </section>
+
+
+            <footer className="about-bottom">
+
+            </footer>
 
         </div>
     );
