@@ -1,208 +1,111 @@
 
 .about-page {
-    font-family: Arial, sans-serif;
-    background: #ffffff;
-    color: #172b4d;
+    background: #f8f9fc;
+    color: #222;
     min-height: 100vh;
+    padding-bottom: 50px;
 }
 
-.about-page * {
-    box-sizing: border-box;
+.about-hero {
+    background: #101827;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
 }
 
-/* ABOUT SECTION */
+.about-hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
 
-.about-main {
+.about-hero p {
+    font-size: 18px;
+    max-width: 650px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+.about-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    padding: 65px 8%;
-    background: linear-gradient(135deg, #ffffff, #edf5ff);
+    padding: 60px 10%;
 }
 
-.about-info {
+.about-text {
     flex: 1;
-    max-width: 620px;
 }
 
-.about-label {
-    display: inline-block;
-    background: #dceaff;
-    color: #155eef;
-    padding: 8px 16px;
-    border-radius: 25px;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
+.about-text h2,
+.mission-section h2,
+.why-section h2 {
+    font-size: 30px;
     margin-bottom: 20px;
 }
 
-.about-info h1 {
-    font-size: 43px;
-    color: #102a56;
-    margin: 0 0 22px;
-}
-
-.about-info h1 span {
-    color: #155eef;
-}
-
-.about-info p {
-    color: #64748b;
-    font-size: 15px;
+.about-text p,
+.mission-section p {
+    font-size: 16px;
     line-height: 1.8;
+    color: #555;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.mission-section {
+    text-align: center;
+    background: white;
+    padding: 50px 15%;
+}
+
+.why-section {
+    text-align: center;
+    padding: 60px 8%;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.why-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+.why-card h3 {
     margin-bottom: 15px;
 }
 
-.about-btn {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 13px 25px;
-    background: #155eef;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: 0.3s;
+.why-card p {
+    color: #666;
+    line-height: 1.6;
 }
-
-.about-btn:hover {
-    background: #0b43bb;
-}
-
-/* TRANSPARENT CAR IMAGE */
-
-.about-photo {
-    flex: 0 1 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-}
-
-.about-photo img {
-    display: block;
-    width: 100%;
-    max-width: 320px;
-    height: 200px;
-    object-fit: contain;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    mix-blend-mode: normal;
-}
-
-/* CONTACT SECTION */
-
-.about-contact {
-    padding: 55px 8%;
-    text-align: center;
-    background: #ffffff;
-}
-
-.about-contact h2 {
-    font-size: 32px;
-    color: #102a56;
-    margin: 0 0 12px;
-}
-
-.about-contact h2 span {
-    color: #155eef;
-}
-
-.about-contact-subtitle {
-    color: #64748b;
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-
-.about-contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-
-.about-contact-card {
-    background: #f3f8ff;
-    padding: 25px 15px;
-    border: 1px solid #e0ebff;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.about-contact-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(21, 94, 239, 0.1);
-}
-
-.contact-icon {
-    font-size: 28px;
-}
-
-.about-contact-card h3 {
-    font-size: 18px;
-    color: #102a56;
-    margin: 12px 0 8px;
-}
-
-.about-contact-card p {
-    color: #64748b;
-    font-size: 14px;
-    margin: 0;
-    overflow-wrap: anywhere;
-}
-
-/* SHORT FOOTER */
-
-.about-bottom {
-    background: #155eef;
-    color: white;
-    text-align: center;
-    padding: 17px 15px;
-}
-
-.about-bottom p {
-    font-size: 13px;
-    margin: 0;
-}
-
-/* RESPONSIVE */
 
 @media (max-width: 768px) {
-    .about-main {
+    .about-content {
         flex-direction: column;
-        padding: 45px 6%;
-        gap: 25px;
+        padding: 40px 6%;
     }
 
-    .about-info h1 {
-        font-size: 34px;
-    }
-
-    .about-photo {
-        flex: none;
-        width: 100%;
-    }
-
-    .about-photo img {
-        max-width: 280px;
-        height: 180px;
-    }
-
-    .about-contact {
-        padding: 45px 6%;
-    }
-
-    .about-contact-grid {
+    .why-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
     }
 
-    .about-contact h2 {
-        font-size: 28px;
+    .about-hero h1 {
+        font-size: 32px;
     }
 }
