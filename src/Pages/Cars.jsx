@@ -1,7 +1,8 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// Keep this data for the existing CarDetails page
 export const carsData = [
     {
         id: 1,
@@ -60,11 +61,34 @@ export const carsData = [
 ];
 
 function Cars() {
+    const [cars, setCars] = useState([]);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("All");
     const [selectedCarName, setSelectedCarName] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    const filteredCars = carsData.filter((car) => {
+    // Get cars from backend API
+    useEffect(() => {
+        fetch("/api/cars")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to load cars");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setCars(data);
+                setLoading(false);
+            })
+            .catch(() => {
+                setError("Unable to load cars from backend.");
+                setLoading(false);
+            });
+    }, []);
+
+    // Search and category filter
+    const filteredCars = cars.filter((car) => {
         const matchesSearch = car.title
             .toLowerCase()
             .includes(search.toLowerCase());
@@ -103,20 +127,19 @@ function Cars() {
                 </select>
             </div>
 
+            {loading && <p>Loading cars...</p>}
+            {error && <p>{error}</p>}
+
             <div className="cars-grid">
                 {filteredCars.map((car) => (
                     <div key={car.id} className="car-card">
-                        <span className="car-type-badge">
-                            {car.type}
-                        </span>
+                        <span className="car-type-badge">{car.type}</span>
 
                         <img src={car.image} alt={car.title} />
 
                         <h3>{car.title}</h3>
 
-                        <p className="car-desc">
-                            {car.description}
-                        </p>
+                        <p className="car-desc">{car.description}</p>
 
                         <div className="car-specs">
                             {car.specs.map((spec, index) => (
@@ -145,7 +168,7 @@ function Cars() {
                 ))}
             </div>
 
-            {filteredCars.length === 0 && (
+            {!loading && !error && filteredCars.length === 0 && (
                 <p>No cars found. Try another search.</p>
             )}
 
