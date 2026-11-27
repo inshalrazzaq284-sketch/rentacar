@@ -1,15 +1,51 @@
 
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
-function CarDetails({ cars }) {
+function CarDetails() {
     const { id } = useParams();
 
-    const car = cars.find((item) => item.id === Number(id));
+    const [car, setCar] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    if (!car) {
+    useEffect(() => {
+        async function fetchCar() {
+            try {
+                setLoading(true);
+                setError("");
+
+                const response = await fetch(`/api/cars/${id}`);
+
+                if (!response.ok) {
+                    throw new Error("Car not found");
+                }
+
+                const data = await response.json();
+                setCar(data);
+            } catch (err) {
+                setError(err.message);
+                setCar(null);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchCar();
+    }, [id]);
+
+    if (loading) {
         return (
             <section className="car-details-page">
-                <h2>Car not found</h2>
+                <h2>Loading car details...</h2>
+            </section>
+        );
+    }
+
+    if (error || !car) {
+        return (
+            <section className="car-details-page">
+                <h2>{error || "Car not found"}</h2>
                 <Link to="/cars">Back to Cars</Link>
             </section>
         );
@@ -36,7 +72,7 @@ function CarDetails({ cars }) {
             <h3>Specifications</h3>
 
             <div className="car-specs">
-                {car.specs.map((spec, index) => (
+                {(car.specs || []).map((spec, index) => (
                     <span key={index}>{spec}</span>
                 ))}
             </div>
