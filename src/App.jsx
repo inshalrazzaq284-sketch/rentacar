@@ -1,7 +1,10 @@
-import {useState} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import About from './Pages/About';
-import './App.css';
+
+import { useState } from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import About from "./Pages/About";
+import Cars from "./Pages/Cars";
+import CarDetails from "./Pages/CarDetails";
+import "./App.css";
 
 const carsData = [
     {
@@ -79,12 +82,14 @@ function Home() {
         <div className="app-container">
             <header className="header">
                 <div className="logo">Rent n Drive</div>
+
                 <nav className="nav-links">
                     <a href="#home">Home</a>
-                    <a href="#cars">Cars & Jeeps</a>
-                    <a href="/about">About Us</a>
+                    <Link to="/cars">Cars & Jeeps</Link>
+                    <Link to="/about">About Us</Link>
                     <a href="#contact">Contact</a>
                 </nav>
+
                 <div className="auth-buttons">
                     <a href="#contact" className="btn-login">Login</a>
                     <a href="#contact" className="btn-signup">Sign up</a>
@@ -93,40 +98,56 @@ function Home() {
 
             <section id="home" className="hero-section">
                 <div className="hero-content">
-                    <h1>Find Your Perfect Car<br/>for Every Journey</h1>
-                    <p>Choose your perfect car or SUV and enjoy an easy, luxury, and comfortable rental experience.</p>
-                    <a href="#cars" className="btn-browse">Browse Fleet</a>
+                    <h1>
+                        Find Your Perfect Car<br />
+                        for Every Journey
+                    </h1>
+                    <p>
+                        Choose your perfect car or SUV and enjoy an easy,
+                        luxury, and comfortable rental experience.
+                    </p>
+                    <Link to="/cars" className="btn-browse">
+                        Browse Fleet
+                    </Link>
                 </div>
+
                 <div className="hero-image">
                     <img
                         src="https://thumbs.dreamstime.com/b/blue-sedan-car-front-three-quarter-view-isolated-transparent-background-automobile-vehicle-shiny-shown-428558764.jpg"
-                        alt="Blue Sports Car"/>
+                        alt="Blue Sports Car"
+                    />
                 </div>
             </section>
 
             <div className="search-bar-card">
                 <div className="search-field">
                     <label>Pick-up Location</label>
-                    <input type="text" placeholder="City or Airport name"/>
+                    <input type="text" placeholder="City or Airport name" />
                 </div>
+
                 <div className="search-field">
                     <label>Pick-up Date</label>
-                    <input type="date"/>
+                    <input type="date" />
                 </div>
+
                 <div className="search-field">
                     <label>Return Date</label>
-                    <input type="date"/>
+                    <input type="date" />
                 </div>
+
                 <button className="btn-search">Search Vehicles</button>
             </div>
 
             <section id="cars" className="cars-section">
                 <h2>Our Vehicle Fleet ({carsData.length} Available)</h2>
+
                 <div className="cars-grid">
-                    {carsData.map(car => (
+                    {carsData.map((car) => (
                         <div key={car.id} className="car-card">
                             <span className="car-type-badge">{car.type}</span>
-                            <img src={car.image} alt={car.title}/>
+
+                            <img src={car.image} alt={car.title} />
+
                             <h3>{car.title}</h3>
                             <p className="car-desc">{car.description}</p>
 
@@ -138,7 +159,12 @@ function Home() {
 
                             <div className="card-footer">
                                 <p className="price">{car.price}</p>
-                                <button className="btn-book" onClick={() => handleRentClick(car.title)}>Rent Now
+
+                                <button
+                                    className="btn-book"
+                                    onClick={() => handleRentClick(car.title)}
+                                >
+                                    Rent Now
                                 </button>
                             </div>
                         </div>
@@ -147,39 +173,65 @@ function Home() {
 
                 {booked && (
                     <div className="success-msg">
-                        Success! Booking request for <strong>{selectedCarName}</strong> has been received successfully!
+                        Success! Booking request for{" "}
+                        <strong>{selectedCarName}</strong> has been received
+                        successfully!
                     </div>
                 )}
             </section>
+
             <section id="contact" className="contact-section">
                 <h2>Contact & Reservation Support</h2>
-                <p>Fill out the form below for any inquiries or vehicle bookings:</p>
+                <p>
+                    Fill out the form below for any inquiries or vehicle bookings:
+                </p>
+
                 <form onSubmit={handleContactSubmit} className="contact-form">
-                    <input type="text" placeholder="Full Name" required/>
-                    <input type="email" placeholder="Email Address" required/>
-                    <textarea rows="4" placeholder="Your booking dates or inquiry details..." required></textarea>
-                    <button type="submit" className="btn-submit">Submit Message</button>
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        required
+                    />
+
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        required
+                    />
+
+                    <textarea
+                        rows="4"
+                        placeholder="Your booking dates or inquiry details..."
+                        required
+                    />
+
+                    <button type="submit" className="btn-submit">
+                        Submit Message
+                    </button>
                 </form>
-                {contactSent &&
-                    <div className="success-msg">Thank you! Your message has been received. We will contact you
-                        soon.</div>}
+
+                {contactSent && (
+                    <div className="success-msg">
+                        Thank you! Your message has been received.
+                        We will contact you soon.
+                    </div>
+                )}
             </section>
 
             <footer className="footer">
                 <p>&copy; 2026 Rent n Drive. Student Rental Project.</p>
             </footer>
         </div>
-
     );
 }
 
 export default function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/cars" element={<Cars />} />
+            <Route path="/cars/:id" element={<CarDetails />} />
+        </Routes>
     );
 }
