@@ -6,7 +6,7 @@ export default function About() {
     return (
         <div className="about-page">
 
-            {/* ABOUT US */}
+            {/* ABOUT US SECTION */}
             <section className="about-main">
 
                 <div className="about-info">
@@ -29,22 +29,22 @@ export default function About() {
                         are always our priorities.
                     </p>
 
-                    <Link to="/" className="about-btn">
+                    <Link to="/cars" className="about-btn">
                         Explore Our Cars →
                     </Link>
                 </div>
 
-                {/* TRANSPARENT CAR IMAGE */}
+                {/* CAR IMAGE */}
                 <div className="about-photo">
                     <img
-                        src="/car.png"
+                        src="/Cars/car.png"
                         alt="Luxury rental car"
                     />
                 </div>
 
             </section>
 
-            {/* CONTACT DETAILS */}
+            {/* CONTACT SECTION */}
             <section className="about-contact">
 
                 <h2>
@@ -57,18 +57,31 @@ export default function About() {
 
                 <div className="about-contact-grid">
 
+                    {/* PHONE */}
                     <div className="about-contact-card">
                         <span className="contact-icon">📞</span>
                         <h3>Phone</h3>
-                        <p>+358 4089765</p>
+
+                        <p>
+                            <a href="tel:+3584089765">
+                                +358 4089765
+                            </a>
+                        </p>
                     </div>
 
+                    {/* EMAIL */}
                     <div className="about-contact-card">
                         <span className="contact-icon">✉️</span>
                         <h3>Email</h3>
-                        <p>rentacar@gmail.com</p>
+
+                        <p>
+                            <a href="mailto:rentacar@gmail.com">
+                                rentacar@gmail.com
+                            </a>
+                        </p>
                     </div>
 
+                    {/* LOCATION */}
                     <div className="about-contact-card">
                         <span className="contact-icon">📍</span>
                         <h3>Location</h3>
@@ -78,10 +91,7 @@ export default function About() {
                 </div>
             </section>
 
-
-            <footer className="about-bottom">
-
-            </footer>
+            <footer className="about-bottom"></footer>
 
         </div>
     );

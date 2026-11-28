@@ -1,111 +1,202 @@
 
+/* ABOUT PAGE */
 .about-page {
-    background: #f8f9fc;
+    background-color: #f8f9fc;
     color: #222;
     min-height: 100vh;
-    padding-bottom: 50px;
+    width: 100%;
+    padding-bottom: 40px;
 }
 
-.about-hero {
-    background: #101827;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.about-hero h1 {
-    font-size: 42px;
-    margin-bottom: 15px;
-}
-
-.about-hero p {
-    font-size: 18px;
-    max-width: 650px;
-    margin: auto;
-    line-height: 1.7;
-}
-
-.about-content {
+/* MAIN SECTION */
+.about-page .about-main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
-    padding: 60px 10%;
+    gap: 50px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 80px 8%;
 }
 
-.about-text {
+.about-page .about-info {
     flex: 1;
+    min-width: 0;
 }
 
-.about-text h2,
-.mission-section h2,
-.why-section h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
-}
-
-.about-text p,
-.mission-section p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #555;
-}
-
-.about-image {
-    flex: 1;
-}
-
-.about-image img {
-    width: 100%;
-    border-radius: 15px;
-    object-fit: cover;
-}
-
-.mission-section {
-    text-align: center;
-    background: white;
-    padding: 50px 15%;
-}
-
-.why-section {
-    text-align: center;
-    padding: 60px 8%;
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.why-card {
-    background: white;
-    padding: 30px 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-}
-
-.why-card h3 {
+.about-page .about-label {
+    display: inline-block;
+    color: #2563eb;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
     margin-bottom: 15px;
 }
 
-.why-card p {
-    color: #666;
-    line-height: 1.6;
+.about-page .about-info h1 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 25px;
+    color: #182238;
 }
 
+.about-page .about-info h1 span {
+    color: #2563eb;
+}
+
+.about-page .about-info p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #555;
+    margin: 0 0 18px;
+}
+
+/* EXPLORE BUTTON */
+.about-page .about-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background-color: #2563eb;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.about-page .about-btn:hover {
+    background-color: #1d4ed8;
+    color: white;
+}
+
+/* CAR IMAGE */
+.about-page .about-photo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page .about-photo img {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* CONTACT SECTION */
+.about-page .about-contact {
+    background-color: #fff;
+    padding: 65px 8%;
+    text-align: center;
+}
+
+.about-page .about-contact h2 {
+    font-size: 36px;
+    color: #182238;
+    margin: 0 0 15px;
+}
+
+.about-page .about-contact h2 span {
+    color: #2563eb;
+}
+
+.about-page .about-contact-subtitle {
+    font-size: 17px;
+    color: #666;
+    margin: 0 0 35px;
+}
+
+/* CONTACT CARDS */
+.about-page .about-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.about-page .about-contact-card {
+    background-color: #f8f9fc;
+    padding: 35px 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.about-page .about-contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.about-page .contact-icon {
+    display: block;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.about-page .about-contact-card h3 {
+    font-size: 21px;
+    color: #182238;
+    margin: 0 0 12px;
+}
+
+.about-page .about-contact-card p {
+    font-size: 16px;
+    color: #555;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* FOOTER */
+.about-page .about-bottom {
+    min-height: 20px;
+}
+
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
-    .about-content {
+    .about-page .about-main {
         flex-direction: column;
-        padding: 40px 6%;
+        padding: 45px 6%;
+        gap: 30px;
+        text-align: center;
     }
 
-    .why-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-hero h1 {
+    .about-page .about-info h1 {
         font-size: 32px;
     }
+
+    .about-page .about-info p {
+        font-size: 15px;
+    }
+
+    .about-page .about-photo img {
+        max-width: 380px;
+    }
+
+    .about-page .about-contact {
+        padding: 45px 6%;
+    }
+
+    .about-page .about-contact h2 {
+        font-size: 29px;
+    }
+
+    .about-page .about-contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.about-page .about-contact-card a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-page .about-contact-card a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
 }
