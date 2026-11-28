@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import About from "./Pages/About";
 import Cars from "./Pages/Cars";
 import CarDetails from "./Pages/CarDetails";
+import Login from "./Pages/Login";
 import "./App.css";
 
 const carsData = [
@@ -91,8 +92,13 @@ function Home() {
                 </nav>
 
                 <div className="auth-buttons">
-                    <a href="#contact" className="btn-login">Login</a>
-                    <a href="#contact" className="btn-signup">Sign up</a>
+                    <Link to="/login" className="btn-login">
+                        Login
+                    </Link>
+
+                    <Link to="/login" className="btn-signup">
+                        Sign Up
+                    </Link>
                 </div>
             </header>
 
@@ -135,21 +141,29 @@ function Home() {
                     <input type="date" />
                 </div>
 
-                <button className="btn-search">Search Vehicles</button>
+                <button className="btn-search">
+                    Search Vehicles
+                </button>
             </div>
 
             <section id="cars" className="cars-section">
-                <h2>Our Vehicle Fleet ({carsData.length} Available)</h2>
+                <h2>
+                    Our Vehicle Fleet ({carsData.length} Available)
+                </h2>
 
                 <div className="cars-grid">
                     {carsData.map((car) => (
                         <div key={car.id} className="car-card">
-                            <span className="car-type-badge">{car.type}</span>
+                            <span className="car-type-badge">
+                                {car.type}
+                            </span>
 
                             <img src={car.image} alt={car.title} />
 
                             <h3>{car.title}</h3>
-                            <p className="car-desc">{car.description}</p>
+                            <p className="car-desc">
+                                {car.description}
+                            </p>
 
                             <div className="car-specs">
                                 {car.specs.map((spec, i) => (
@@ -162,7 +176,9 @@ function Home() {
 
                                 <button
                                     className="btn-book"
-                                    onClick={() => handleRentClick(car.title)}
+                                    onClick={() =>
+                                        handleRentClick(car.title)
+                                    }
                                 >
                                     Rent Now
                                 </button>
@@ -174,19 +190,24 @@ function Home() {
                 {booked && (
                     <div className="success-msg">
                         Success! Booking request for{" "}
-                        <strong>{selectedCarName}</strong> has been received
-                        successfully!
+                        <strong>{selectedCarName}</strong>{" "}
+                        has been received successfully!
                     </div>
                 )}
             </section>
 
             <section id="contact" className="contact-section">
                 <h2>Contact & Reservation Support</h2>
+
                 <p>
-                    Fill out the form below for any inquiries or vehicle bookings:
+                    Fill out the form below for any inquiries
+                    or vehicle bookings:
                 </p>
 
-                <form onSubmit={handleContactSubmit} className="contact-form">
+                <form
+                    onSubmit={handleContactSubmit}
+                    className="contact-form"
+                >
                     <input
                         type="text"
                         placeholder="Full Name"
@@ -205,7 +226,10 @@ function Home() {
                         required
                     />
 
-                    <button type="submit" className="btn-submit">
+                    <button
+                        type="submit"
+                        className="btn-submit"
+                    >
                         Submit Message
                     </button>
                 </form>
@@ -219,7 +243,10 @@ function Home() {
             </section>
 
             <footer className="footer">
-                <p>&copy; 2026 Rent n Drive. Student Rental Project.</p>
+                <p>
+                    &copy; 2026 Rent n Drive.
+                    Student Rental Project.
+                </p>
             </footer>
         </div>
     );
@@ -232,6 +259,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/cars" element={<Cars />} />
             <Route path="/cars/:id" element={<CarDetails />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
     );
 }
